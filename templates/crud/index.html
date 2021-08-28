@@ -1,0 +1,43 @@
+{% extends 'crud/base.html' %}
+
+{%  block body_block %}
+
+<h1 align = "center"> Student List</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
+      <th scope="col">Date of birth</th>
+    </tr>
+  </thead>
+  <tbody>
+  <ul>
+{% if users %}
+ {% for user in users %} 
+ 
+    <tr>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.phone}}</td>
+      <td>{{user.address}}</td>
+      <td>{{user.date_of_birth}}</td>
+      <td><a href= " {% url 'crud:update' userid=user.id %}" class = "btn btn-primary">Update</a> <a href= " {% url 'crud:delete' userid=user.id %}" class = "btn btn-danger">Delete</a>
+
+      </td>
+    </tr>
+     {% endfor %}
+
+  </tbody>
+</table>
+{% else %}
+
+<h4> No student available </h4>
+
+{% endif %}
+
+{%  endblock body_block %}
